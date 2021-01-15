@@ -32,20 +32,12 @@ app.get('/api/recommended/:id', (req, res) => {
     });
 });
 
-app.put('/api/recommended/:id', (req, res) => {
+app.patch('/api/recommended/:id', (req, res) => {
   const { id } = req.params;
-  Adventures.findOne({ _id: id })
+  const { liked } = req.body;
+  Adventures.findByIdAndUpdate(id, { liked: !liked }, { new: true, useFindAndModify: false })
     .then((results) => {
-      Adventures.updateOne({ _id: id }, { liked: !results.liked })
-        .then(() => {
-          Adventures.find({ _id: id })
-            .then((data) => {
-              res.status(200).send(data);
-            });
-        })
-        .catch((err) => {
-          res.status(400).send(err);
-        });
+      res.status(200).send(results);
     })
     .catch((err) => {
       res.status(400).send(err);
