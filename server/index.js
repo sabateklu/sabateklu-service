@@ -1,6 +1,8 @@
+/* eslint-disable no-console */
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+
 const Adventures = require('../database/index.js');
 
 const app = express();
@@ -10,6 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, '../public/')));
+
 
 app.get('/api/recommended', (req, res) => {
   Adventures.find({})
@@ -43,6 +46,7 @@ app.put('/api/recommended/:id', (req, res) => {
       res.status(400).send(err);
     });
 });
+
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
