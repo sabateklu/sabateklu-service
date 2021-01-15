@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/recommended', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost/recommended', {
+  useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: true,
+});
 
 const adventuresSchema = new mongoose.Schema({
   name: String,

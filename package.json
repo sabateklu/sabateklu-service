@@ -7,7 +7,8 @@
     "start": "webpack --mode=development",
     "build": "webpack --mode=production",
     "dev": "webpack serve",
-    "seed": "node database/seed.js"
+    "seed": "node database/seed.js",
+    "server": "npx nodemon server/index.js"
   },
   "repository": {
     "type": "git",
