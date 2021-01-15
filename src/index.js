@@ -7,4 +7,4 @@ const App = () => (
   <h2>im a maus in a haus </h2>
 );
 
-reactDOM.render(<App />, document.getElementById('root'))
+reactDOM.render(<App />, document.getElementById('root'));
