@@ -2,9 +2,6 @@
 import React from 'react';
 import reactDOM from 'react-dom';
 import './styles/style.css';
-
-const App = () => (
-  <h2>im a maus in a haus </h2>
-);
+import App from './App';
 
 reactDOM.render(<App />, document.getElementById('root'));

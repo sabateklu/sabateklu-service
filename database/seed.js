@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const faker = require('faker');
+const mongoose = require('mongoose');
 
 const Adventures = require('./index.js');
 
@@ -32,6 +33,7 @@ for (let i = 0; i < 100; i++) {
     .then((results) => {
       // eslint-disable-next-line no-console
       console.log(results);
+      mongoose.connection.close();
     })
     .catch((err) => {
       console.log(err);
