@@ -10,7 +10,9 @@
     "seed": "node database/seed.js",
     "server": "npx nodemon server/index.js",
     "lint": "./node_modules/.bin/eslint . --ignore-path ./.eslintignore",
-    "test": "jest"
+    "test": "jest --verbose",
+    "test:watch": "jest --watchAll --verbose",
+    "test:coverage": "jest --verbose --coverage"
   },
   "repository": {
     "type": "git",
