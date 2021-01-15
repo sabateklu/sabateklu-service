@@ -32,7 +32,7 @@ app.get('/api/recommended/:id', (req, res) => {
     });
 });
 
-app.patch('/api/recommended/:id', (req, res) => {
+app.put('/api/recommended/:id', (req, res) => {
   const { id } = req.params;
   const { liked } = req.body;
   Adventures.findByIdAndUpdate(id, { liked: !liked }, { new: true, useFindAndModify: false })
