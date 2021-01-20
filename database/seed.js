@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable no-console */
 const faker = require('faker');
 const mongoose = require('mongoose');
@@ -22,20 +23,23 @@ const returnAdventure = function (num) {
     reviews: faker.random.number(),
     rating: getRandomInt(5),
     price: `$${faker.commerce.price()}`,
-    liked: faker.random.boolean(),
+    liked: false,
     timesBooked: faker.random.number(),
   };
 };
 
 // eslint-disable-next-line no-plusplus
+const results = [];
 for (let i = 0; i < 100; i++) {
   Adventures.create(returnAdventure(i))
-    .then((results) => {
+    .then((result) => {
       // eslint-disable-next-line no-console
-      console.log(results);
-      mongoose.connection.close();
+      results.push(result);
+      if (results.length === 100) {
+        mongoose.connection.close();
+      }
     })
     .catch((err) => {
-      console.log(err);
+      throw err;
     });
 }
