@@ -5,4 +5,4 @@ scraper
 __specs__
 /src/styles
 coverage
-__mocks_
+__mocks__
