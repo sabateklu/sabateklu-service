@@ -21,9 +21,7 @@ class App extends Component {
           adventures: topFour,
         });
       })
-      .catch((err) => {
-        throw err;
-      });
+      .catch((err) => err);
   }
 
   updateLiked(elementId) {
@@ -35,11 +33,10 @@ class App extends Component {
             this.setState({
               adventures: topFour,
             });
-          });
+          })
+          .catch((err) => err);
       })
-      .catch((err) => {
-        throw err;
-      });
+      .catch((err) => err);
   }
 
   render() {
@@ -78,7 +75,7 @@ class App extends Component {
     };
 
     return (
-      <div>
+      <div className="main">
         {/* Heading */}
         <h2 style={style.heading}>Plan your visit</h2>
 
