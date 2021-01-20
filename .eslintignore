@@ -4,3 +4,5 @@ config
 scraper
 __specs__
 /src/styles
+coverage
+__mocks_
