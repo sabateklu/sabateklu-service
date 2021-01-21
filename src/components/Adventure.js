@@ -94,6 +94,16 @@ function Adventure({ adventure, updateLiked }) {
   if (reviews >= 1000) {
     reviews = numberWithCommas(reviews);
   }
+  const handleClick = () => {
+    updateLiked(_id);
+    if ($(`#${_id}`).hasClass(classes.infoi)) {
+      $(`#${_id}`).removeClass(classes.infoi);
+      $(`#${_id}`).addClass(classes.info);
+    } else {
+      $(`#${_id}`).removeClass(classes.info);
+      $(`#${_id}`).addClass(classes.infoi);
+    }
+  };
 
   return (
     <div className={classes.card}>
@@ -102,20 +112,11 @@ function Adventure({ adventure, updateLiked }) {
           <img className="image mdc-fab__ripple" src={image} alt={name} />
           <Fab
             id={_id}
-            className={classes.infoi}
+            className={`${classes.infoi} test562`}
             variant="extended"
             size="small"
             aria-label="like"
-            onClick={() => {
-              updateLiked(_id);
-              if ($(`#${_id}`).hasClass(classes.infoi)) {
-                $(`#${_id}`).removeClass(classes.infoi);
-                $(`#${_id}`).addClass(classes.info);
-              } else {
-                $(`#${_id}`).removeClass(classes.info);
-                $(`#${_id}`).addClass(classes.infoi);
-              }
-            }}
+            onClick={handleClick}
           >
             <FavoriteIcon />
           </Fab>
