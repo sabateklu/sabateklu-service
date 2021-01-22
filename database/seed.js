@@ -15,6 +15,12 @@ function picUrl(num) {
   return base;
 }
 
+function randSubcategory() {
+  const options = ['Tours & Sightseeing', 'Private & Custom Tours', 'Outdoor Adventures'];
+
+  return options[Math.ceil(Math.random() * 3) - 1];
+}
+
 // eslint-disable-next-line func-names
 const returnAdventure = function (num) {
   return {
@@ -25,6 +31,8 @@ const returnAdventure = function (num) {
     price: `$${faker.commerce.price()}`,
     liked: false,
     timesBooked: faker.random.number(),
+    subcategory: randSubcategory(),
+    overview: faker.lorem.paragraph(),
   };
 };
 
