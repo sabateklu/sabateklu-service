@@ -34,6 +34,21 @@ test('GET /api/recommended', async (done) => {
   done();
 });
 
+test('GET /api/recommended/hello/:num', async (done) => {
+  await supertest(app).get('/api/recommended/hello/2')
+    .then((response) => {
+      expect(response.status).toBe(200);
+      expect(Array.isArray(response.body)).toBeTruthy();
+      expect(response.body.length).toBeGreaterThan(1);
+      expect(typeof response.body[0].subcategory).toBe('Outdoor Adventures');
+      expect(typeof response.body[0].reviews).toBe('number');
+      expect(response.body[0].liked).toBe(false);
+    })
+    .catch((err) => err);
+
+  done();
+});
+
 test('GET /api/recommended/:id', async (done) => {
   let id = '60087a64e722d554ee6aa016';
 

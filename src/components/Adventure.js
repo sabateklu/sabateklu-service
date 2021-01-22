@@ -17,6 +17,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import Fab from '@material-ui/core/Fab';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
+import axios from 'axios';
 
 class Adventure extends Component {
   constructor(props) {
@@ -165,7 +166,6 @@ class Adventure extends Component {
     const { overview } = adventure;
     const { liked } = adventure;
 
-
     if (reviews >= 1000) {
       reviews = this.numberWithCommas(reviews);
     }
@@ -261,6 +261,8 @@ Adventure.propTypes = {
     price: PropTypes.string,
     liked: PropTypes.bool,
     timesBooked: PropTypes.number,
+    subcategory: PropTypes.string,
+    overview: PropTypes.string,
   }).isRequired,
 };
 

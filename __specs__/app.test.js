@@ -36,4 +36,13 @@ describe('App component functions as expected', () => {
     expect(instance.updateLiked).toHaveBeenCalledTimes(1);
     done();
   });
+  it('should invoke viewSwitcher onClick of tab', (done) => {
+    const instance = wrap.instance();
+    jest.spyOn(instance, 'viewSwitcher');
+    instance.viewSwitcher({ target: 2 });
+    expect(instance.viewSwitcher).toHaveBeenCalledTimes(1);
+    instance.viewSwitcher({ target: 5 });
+    expect(instance.viewSwitcher).toHaveBeenCalledTimes(2);
+    done();
+  })
 });
