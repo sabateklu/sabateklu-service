@@ -32,6 +32,34 @@ app.get('/api/recommended/:id', (req, res) => {
     });
 });
 
+app.get('/api/recommended/hello/:num', (req, res) => {
+  const { num } = req.params;
+  const assigments = {
+    1: 'Recommended',
+    2: 'Outdoor Adventures',
+    3: 'Tours & Sightseeing',
+    4: 'Private & Custom Tours',
+    5: 'liked',
+  };
+  if (num === '5') {
+    Adventures.find({ liked: true })
+      .then((results) => {
+        res.status(200).send(results);
+      })
+      .catch((err) => {
+        res.status(400).send(err);
+      });
+  } else {
+    Adventures.find({ subcategory: assigments[num] })
+      .then((results) => {
+        res.status(200).send(results);
+      })
+      .catch((err) => {
+        res.status(400).send(err);
+      });
+  }
+});
+
 app.put('/api/recommended/:id', (req, res) => {
   const { id } = req.params;
   const { liked } = req.body;

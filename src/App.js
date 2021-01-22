@@ -1,3 +1,7 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable class-methods-use-this */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/jsx-filename-extension */
 import React, { Component } from 'react';
 import axios from 'axios';
@@ -9,8 +13,10 @@ class App extends Component {
     super(props);
     this.state = {
       adventures: [],
+      liked: false,
     };
     this.updateLiked = this.updateLiked.bind(this);
+    this.viewSwitcher = this.viewSwitcher.bind(this);
   }
 
   componentDidMount() {
@@ -24,19 +30,30 @@ class App extends Component {
       .catch((err) => err);
   }
 
-  updateLiked(elementId) {
-    axios.put(`/api/recommended/${elementId}`)
-      .then(() => {
-        axios.get('/api/recommended')
-          .then((data) => {
-            const topFour = data.data.slice(0, 4);
-            this.setState({
-              adventures: topFour,
+  updateLiked(elementId, liked) {
+    return axios.put(`/api/recommended/${elementId}`, { liked });
+  }
+
+  viewSwitcher(event) {
+    const str = event.target.id;
+
+    if (str === '1') {
+      this.componentDidMount();
+    } else {
+      axios.get(`/api/recommended/hello/${str}`)
+        .then((results) => {
+          const topFour = results.data.slice(0, 4);
+          while (topFour.length < 4) {
+            topFour.push({
+              name: 'Choose More Favorites', image: 'https://cache.desktopnexus.com/thumbseg/2569/2569756-bigthumbnail.jpg', reviews: 0, rating: 5, price: '$0', liked: false, timesBooked: 0, subcategory: 'Beautiful Thailand', overview: 'There is so much to explore',
             });
-          })
-          .catch((err) => err);
-      })
-      .catch((err) => err);
+          }
+          this.setState({
+            adventures: topFour,
+          });
+        })
+        .catch((err) => err);
+    }
   }
 
   render() {
@@ -83,32 +100,32 @@ class App extends Component {
         <Grid style={style.container} container spacing={1}>
           <Grid item xs={2} style={style.grids}>
             <div style={style.paper}>
-              <div style={style.title}><b>Recommended</b></div>
+              <div style={style.title} onClick={this.viewSwitcher}><b id="1">Recommended</b></div>
               <div style={style.body}>Our most popular tours and activities</div>
             </div>
           </Grid>
           <Grid item xs={2} style={style.grids}>
             <div style={style.paper}>
-              <div style={style.title}><b>Admission Tickets</b></div>
-              <div style={style.body}>Secure your entry and avoid ticket lines</div>
+              <div style={style.title} onClick={this.viewSwitcher}><b id="2">Outdoor Adventures</b></div>
+              <div style={style.body}>The best times with the best sunshine</div>
             </div>
           </Grid>
           <Grid item xs={2} style={style.grids}>
             <div style={style.paper}>
-              <div style={style.title}><b>Tours & Sightseeing</b></div>
+              <div style={style.title} onClick={this.viewSwitcher}><b id="3">Tours & Sightseeing</b></div>
               <div style={style.body}>Browse our largest collection of experiences</div>
             </div>
           </Grid>
           <Grid item xs={2} style={style.grids}>
             <div style={style.paper}>
-              <div style={style.title}><b>Private & Custom Tours</b></div>
+              <div style={style.title} onClick={this.viewSwitcher}><b id="4">Private & Custom Tours</b></div>
               <div style={style.body}>Flexible itineraries and personal experiences</div>
             </div>
           </Grid>
           <Grid item xs={2} style={style.grids}>
             <div style={style.paper}>
-              <div style={style.title}><b>Transfers & Ground Transport</b></div>
-              <div style={style.body}>No stress transit for your arrival and departure</div>
+              <div style={style.title} onClick={this.viewSwitcher}><b id="5">Browse Your Favorites</b></div>
+              <div style={style.body}>There are more adventures on the horizon</div>
             </div>
           </Grid>
         </Grid>
@@ -118,6 +135,7 @@ class App extends Component {
           <AdventuresList
             adventures={adventures}
             updateLiked={this.updateLiked}
+            liked={this.state.liked}
           />
         </div>
       </div>
