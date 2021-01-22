@@ -3,19 +3,21 @@ import { PropTypes } from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 
 import Adventure from './Adventure';
+import AdventureClass from './classAdventure';
 
 import '../styles/style.css';
 
-function AdventuresList({ adventures, updateLiked }) {
+function AdventuresList({ adventures, updateLiked, liked }) {
   return (
     <Grid container spacing={3}>
       <div className="list">
         {
           adventures.map((adv) => (
-            <Grid item xs={3}>
+            <Grid item xs={3} key={adv._id}>
               {' '}
-              <Adventure adventure={adv} updateLiked={updateLiked} />
+              <Adventure adventure={adv} updateLiked={updateLiked} liked={liked} />
               {' '}
+              {/* <AdventureClass adventure={adv} updateLiked={updateLiked} liked={liked} /> */}
             </Grid>
           ))
         }
