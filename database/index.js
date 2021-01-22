@@ -14,6 +14,8 @@ const adventuresSchema = new mongoose.Schema({
   price: String,
   liked: Boolean,
   timesBooked: Number,
+  subcategory: String,
+  overview: String,
 });
 
 const Adventures = mongoose.model('Adventures', adventuresSchema);
