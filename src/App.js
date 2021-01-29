@@ -20,7 +20,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:8080/api/recommended')
+    axios.get('http://54.189.97.228:8080/api/recommended')
       .then((results) => {
         const topSix = results.data.slice(0, 6);
         this.setState({
