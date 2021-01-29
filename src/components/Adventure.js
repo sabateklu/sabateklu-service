@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import { PropTypes } from 'prop-types';
-import '../styles/style.css';
+// import '../styles/style.css';
 import Card from '@material-ui/core/Card';
 import Rating from '@material-ui/lab/Rating';
 import { makeStyles } from '@material-ui/core/styles';
@@ -65,7 +65,7 @@ class Adventure extends Component {
         backgroundColor: 'white',
       },
       card: {
-        padding: '20px 13px 32px',
+        padding: '20px 10px 32px',
         height: '372px',
       },
       reviews: {
@@ -249,9 +249,10 @@ class Adventure extends Component {
 }
 
 Adventure.propTypes = {
-  updateLiked: PropTypes.shape({
-    updateLiked: PropTypes.func,
-  }).isRequired,
+  updateLiked: PropTypes.func.isRequired,
+  // updateLiked: PropTypes.shape({
+  //   updateLiked: PropTypes.func,
+  // }).isRequired,
   adventure: PropTypes.shape({
     _id: PropTypes.string,
     name: PropTypes.string,
