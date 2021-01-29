@@ -32,7 +32,7 @@ class App extends Component {
 
 
   updateLiked(elementId, liked) {
-    return axios.put(`http://localhost:8080/api/recommended/${elementId}`, { liked });
+    return axios.put(`http://54.189.97.228:8080/api/recommended/${elementId}`, { liked });
   }
 
   viewSwitcher(event) {
@@ -41,7 +41,7 @@ class App extends Component {
     if (str === '1') {
       this.componentDidMount();
     } else {
-      axios.get(`http://localhost:8080/api/recommended/hello/${str}`)
+      axios.get(`http://54.189.97.228:8080/api/recommended/hello/${str}`)
         .then((results) => {
           const topFour = results.data.slice(0, 6);
           while (topFour.length < 6) {
