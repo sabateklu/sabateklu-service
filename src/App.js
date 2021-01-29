@@ -20,18 +20,19 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('/api/recommended')
+    axios.get('http://localhost:8080/api/recommended')
       .then((results) => {
-        const topFour = results.data.slice(0, 4);
+        const topSix = results.data.slice(0, 6);
         this.setState({
-          adventures: topFour,
+          adventures: topSix,
         });
       })
       .catch((err) => err);
   }
 
+
   updateLiked(elementId, liked) {
-    return axios.put(`/api/recommended/${elementId}`, { liked });
+    return axios.put(`http://localhost:8080/api/recommended/${elementId}`, { liked });
   }
 
   viewSwitcher(event) {
@@ -40,10 +41,10 @@ class App extends Component {
     if (str === '1') {
       this.componentDidMount();
     } else {
-      axios.get(`/api/recommended/hello/${str}`)
+      axios.get(`http://localhost:8080/api/recommended/hello/${str}`)
         .then((results) => {
-          const topFour = results.data.slice(0, 4);
-          while (topFour.length < 4) {
+          const topFour = results.data.slice(0, 6);
+          while (topFour.length < 6) {
             topFour.push({
               name: 'Choose More Favorites', image: 'https://cache.desktopnexus.com/thumbseg/2569/2569756-bigthumbnail.jpg', reviews: 0, rating: 5, price: '$0', liked: false, timesBooked: 0, subcategory: 'Beautiful Thailand', overview: 'There is so much to explore',
             });
@@ -76,8 +77,12 @@ class App extends Component {
         fontWeight: '400',
         font: '12px ',
       },
+      div: {
+        margin: '0 auto',
+        position: 'center',
+      },
       container: {
-        margin: '10px 80px',
+        margin: '10px 110px',
       },
       paper: {
         padding: '20px',
@@ -90,7 +95,6 @@ class App extends Component {
         font: '26px "Trip Sans", Arial, sans-serif',
       },
     };
-
     return (
       <div className="main">
         {/* Heading */}
@@ -131,7 +135,7 @@ class App extends Component {
         </Grid>
 
         {/* List of Adventures */}
-        <div>
+        <div style={style.div}>
           <AdventuresList
             adventures={adventures}
             updateLiked={this.updateLiked}

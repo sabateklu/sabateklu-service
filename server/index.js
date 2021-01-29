@@ -4,7 +4,10 @@ const path = require('path');
 const Adventures = require('../database/index.js');
 
 const app = express();
+var cors = require('cors')
+
 const PORT = 8080;
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

@@ -45,9 +45,8 @@ for (let i = 0; i < 100; i++) {
       results.push(result);
       if (results.length === 100) {
         mongoose.connection.close();
+        console.log('done');
       }
     })
-    .catch((err) => {
-      throw err;
-    });
+    .catch((err) => err);
 }

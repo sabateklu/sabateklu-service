@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 
 import Adventure from './Adventure';
 
-import '../styles/style.css';
+// import '../styles/style.css';
 
 function AdventuresList({ adventures, updateLiked }) {
   return (
