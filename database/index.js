@@ -4,7 +4,9 @@ mongoose.Promise = global.Promise;
 
 mongoose.connect('mongodb://localhost:27017/recommended', {
   useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: true,
-});
+})
+  .then((results) => results)
+  .catch((err) => err);
 
 const adventuresSchema = new mongoose.Schema({
   name: String,

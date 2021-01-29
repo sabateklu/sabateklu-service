@@ -47,7 +47,5 @@ for (let i = 0; i < 100; i++) {
         mongoose.connection.close();
       }
     })
-    .catch((err) => {
-      throw err;
-    });
+    .catch((err) => err);
 }
