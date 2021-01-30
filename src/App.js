@@ -30,7 +30,6 @@ class App extends Component {
       .catch((err) => err);
   }
 
-
   updateLiked(elementId, liked) {
     return axios.put(`http://54.189.97.228:8080/api/recommended/${elementId}`, { liked });
   }
