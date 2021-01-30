@@ -8,6 +8,10 @@ import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 import AdventuresList from './components/AdventuresList';
 
+axios.defaults.headers.common['Accept-Encoding'] = 'gzip';
+axios.defaults.headers.common['Accept-Encoding'] = 'compress';
+axios.defaults.headers.common['Accept-Encoding'] = 'br';
+
 class App extends Component {
   constructor(props) {
     super(props);
