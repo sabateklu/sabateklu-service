@@ -4,11 +4,10 @@
   "description": "Plan Your Visit",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --mode=development",
     "build": "webpack --mode=production",
     "dev": "webpack serve",
-    "seed": "node database/seed.js",
-    "server": "nodemon server/index.js",
+    "postinstall": "node database/seed.js",
+    "start": "node server/index.js",
     "lint": "./node_modules/.bin/eslint . --ignore-path ./.eslintignore",
     "test": "jest --verbose",
     "test:watch": "jest --watchAll --verbose",
