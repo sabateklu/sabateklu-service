@@ -8,7 +8,7 @@
     "build": "webpack --mode=production",
     "dev": "webpack serve",
     "seed": "node database/seed.js",
-    "server": "node server/index.js",
+    "server": "nodemon server/index.js",
     "lint": "./node_modules/.bin/eslint . --ignore-path ./.eslintignore",
     "test": "jest --verbose",
     "test:watch": "jest --watchAll --verbose",

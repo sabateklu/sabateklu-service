@@ -8,10 +8,6 @@ import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 import AdventuresList from './components/AdventuresList';
 
-axios.defaults.headers.common['Accept-Encoding'] = 'gzip';
-axios.defaults.headers.common['Accept-Encoding'] = 'compress';
-axios.defaults.headers.common['Accept-Encoding'] = 'br';
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -24,18 +20,18 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://54.189.97.228:8080/api/recommended')
+    axios.get('/api/recommended')
       .then((results) => {
-        const topSix = results.data.slice(0, 6);
+        const topTwenty = results.data.slice(0, 20);
         this.setState({
-          adventures: topSix,
+          adventures: topTwenty,
         });
       })
       .catch((err) => err);
   }
 
   updateLiked(elementId, liked) {
-    return axios.put(`http://54.189.97.228:8080/api/recommended/${elementId}`, { liked });
+    return axios.put(`/api/recommended/${elementId}`, { liked });
   }
 
   viewSwitcher(event) {
@@ -44,10 +40,10 @@ class App extends Component {
     if (str === '1') {
       this.componentDidMount();
     } else {
-      axios.get(`http://54.189.97.228:8080/api/recommended/hello/${str}`)
+      axios.get(`/api/recommended/hello/${str}`)
         .then((results) => {
-          const topFour = results.data.slice(0, 6);
-          while (topFour.length < 6) {
+          const topFour = results.data.slice(0, 20);
+          while (topFour.length < 20) {
             topFour.push({
               name: 'Choose More Favorites', image: 'https://cache.desktopnexus.com/thumbseg/2569/2569756-bigthumbnail.jpg', reviews: 0, rating: 5, price: '$0', liked: false, timesBooked: 0, subcategory: 'Beautiful Thailand', overview: 'There is so much to explore',
             });
@@ -73,8 +69,7 @@ class App extends Component {
       },
       title: {
         fontWeight: '900',
-        font: '14px "Trip Sans", Arial, sans-serif',
-
+        font: '14px "Trip Sans", Arial, sans-serif'
       },
       body: {
         fontWeight: '400',
@@ -92,6 +87,7 @@ class App extends Component {
         border: '0px white solid',
         outline: '0px',
         backgroundColor: 'white',
+        cursor: 'pointer'
       },
       heading: {
         margin: '0 95px 20px',

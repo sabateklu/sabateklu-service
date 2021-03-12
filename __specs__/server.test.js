@@ -7,7 +7,7 @@ import 'regenerator-runtime/runtime';
 const supertest = require('supertest');
 const express = require('express');
 const mongoose = require('mongoose');
-const app = require('../server/index');
+const app = require('../server/index')
 
 beforeEach((done) => {
   mongoose.connect('mongodb://localhost/recommended',

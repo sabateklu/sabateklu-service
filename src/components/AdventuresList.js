@@ -17,7 +17,6 @@ function AdventuresList({ adventures, updateLiked }) {
               {' '}
               <Adventure adventure={adv} updateLiked={updateLiked} />
               {' '}
-              {/* <AdventureClass adventure={adv} updateLiked={updateLiked} liked={liked} /> */}
             </Grid>
           ))
         }

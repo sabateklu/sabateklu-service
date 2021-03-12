@@ -37,6 +37,7 @@ app.get('/api/recommended/:id', (req, res) => {
 
 app.get('/api/recommended/hello/:num', (req, res) => {
   const { num } = req.params;
+  console.log(num);
   const assigments = {
     1: 'Recommended',
     2: 'Outdoor Adventures',
@@ -75,7 +76,7 @@ app.put('/api/recommended/:id', (req, res) => {
     });
 });
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`listening on port ${PORT}`);
 });
