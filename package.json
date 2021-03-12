@@ -4,7 +4,7 @@
   "description": "Plan Your Visit",
   "main": "index.js",
   "scripts": {
-    "heroku-postbuild": "webpack -p",
+    //"heroku-postbuild": "webpack --config ./webpack.config.js",
     "dev": "webpack serve",
     "postinstall": "node database/seed.js",
     "start": "node server/index.js",
